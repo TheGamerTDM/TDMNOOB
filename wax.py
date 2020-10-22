@@ -4,8 +4,14 @@ import random
 import os
 import requests
 from discord.ext import commands
+import json
+TOKEN = ''
+with open ('config.json', 'r') as f:
+    TOKEN = json.load(f)['token']
 
-TOKEN = 'Njg1ODEyMDkxNzUxMzY2NjU3.XmOGSA.QWvL-0HunC4R3Rb2yEETJXg6HS8'
+print(TOKEN)
+exit(0)
+
 
 client_bot = commands.Bot(command_prefix='.')
 
