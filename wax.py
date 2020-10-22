@@ -5,14 +5,15 @@ import os
 import requests
 from discord.ext import commands
 import json
+
+
+######################################## BRING TOEKN ########################################
 TOKEN = ''
 with open ('config.json', 'r') as f:
     TOKEN = json.load(f)['token']
 
-print(TOKEN)
-exit(0)
 
-
+######################################## BOT PREFIX ########################################
 client_bot = commands.Bot(command_prefix='.')
 
 
