@@ -5,7 +5,7 @@ import os
 import requests
 from discord.ext import commands
 
-TOKEN = 'Njg1ODEyMDkxNzUxMzY2NjU3.XmOGSA.-3EtifMihZYSVcxdZCIr25GFcWw'
+TOKEN = 'Njg1ODEyMDkxNzUxMzY2NjU3.XmOGSA.QWvL-0HunC4R3Rb2yEETJXg6HS8'
 
 client_bot = commands.Bot(command_prefix='.')
 
@@ -27,8 +27,8 @@ async def ping(ctx):
 ####################################### 8BALL ########################################
 @client_bot.command(aliases=['8ball', '8BALL'])
 async def _8ball(ctx, *, question):
-    fuckyou = 'fuck you' or 'FUCK YOU'
-    python = ['python','PYTHON']
+    fuckyou = ['fuck you', 'FUCK YOU']
+    python = ['python','PYTHON','py']
     if question in python:
         responses = [
             'Ask Gustav',
