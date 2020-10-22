@@ -37,7 +37,7 @@ async def _8ball(ctx, *, question):
             'C# users should programe in python',
             'python is good',
         ]
-    elif fuckyou in question:
+    elif question in fuckyou:
         responses = ['NO FUCK YOU', 'GO FUCK YOURSELF IDIOT']
     else:
         responses = [
