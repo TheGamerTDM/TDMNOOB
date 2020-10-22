@@ -90,11 +90,13 @@ async def clear(ctx, amount=2):
             await ctx.send(f'Yes sir i well remove {amount} as default')
         else:
             await ctx.send(f'Yes sir i well remove {amount}')
-    else:
-        await ctx.sand(f"100 or under pleas it can't be this {amount}")
+        
+        sleep(2)
+        await ctx.channel.purge(limit=amount + 2)
 
-    sleep(2)
-    await ctx.channel.purge(limit=amount + 2)
+    else:
+        await ctx.send("100 or under please")
+
 
 
 ######################################## KICK ########################################
@@ -225,14 +227,55 @@ agent = praw.Reddit(client_id='Ceva16eRbrWxog',
                      client_secret='0ZaRckgTXapz2D2z1N66UrNJHQQ',
                      user_agent='1.0.0')
 
-@client_bot.command()
-async def meme(ctx):
-    memes_submissions = agent.subreddit('dankmemes').hot()
-    post_to_pick = random.randint(1, 30)
-    for i in range(0, post_to_pick):
-        submission = next(x for x in memes_submissions if not x.stickied)
+@client_bot.command(aliases=['MEME','memes','MEMES'])
+async def meme(ctx, *, memez=None):
 
-    await ctx.send(submission.url)
+    hep = ['help', 'HELP']
+
+    if memez == 'dankmemes':
+        memes_submissions = agent.subreddit('dankmemes').hot()
+        post_to_pick = random.randint(1, 30)
+        for i in range(0, post_to_pick):
+            submission = next(x for x in memes_submissions if not x.stickied)
+
+        await ctx.send(submission.url)
+    elif memez == 'memes':
+        memes_submissions = agent.subreddit('memes').hot()
+        post_to_pick = random.randint(1, 30)
+        for i in range(0, post_to_pick):
+            submission = next(x for x in memes_submissions if not x.stickied)
+
+        await ctx.send(submission.url)
+    elif memez == 'ohffensivememes':
+        memes_submissions = agent.subreddit('ohffensivememes').hot()
+        post_to_pick = random.randint(1, 30)
+        for i in range(0, post_to_pick):
+            submission = next(x for x in memes_submissions if not x.stickied)
+
+        await ctx.send(submission.url)
+    elif memez == 'ksi':
+        memes_submissions = agent.subreddit('ksi').hot()
+        post_to_pick = random.randint(1, 30)
+        for i in range(0, post_to_pick):
+            submission = next(x for x in memes_submissions if not x.stickied)
+
+        await ctx.send(submission.url)
+    elif memez in hep:
+        await ctx.send('```py\n1. dankmemes\n2. memes\n3. ohffensivememes\n4. ksi\n5. Type what subreddit you want```')
+    else:
+        await ctx.send('Please type a subreddit or do ".meme help" for more help')
+        return
+            
+    
+    if memez in hep:
+        return
+    else:
+        memes_submissions = agent.subreddit(memez).hot()
+        post_to_pick = random.randint(1, 30)
+        for i in range(0, post_to_pick):
+            submission = next(x for x in memes_submissions if not x.stickied)
+
+        await ctx.send(submission.url)
 
 
 
