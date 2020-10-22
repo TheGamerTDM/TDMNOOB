@@ -1,10 +1,13 @@
 import discord
 from time import sleep
+import praw
 import random
 import os
 import requests
 from discord.ext import commands
 import json
+import requests
+
 
 
 ######################################## BRING TOEKN ########################################
@@ -215,6 +218,26 @@ async def on_raw_reaction_remove(payload):
                 print('member not found')
         else:
             print('role not found')
+
+
+######################################## Reddit meme ########################################
+agent = praw.Reddit(client_id='Ceva16eRbrWxog',
+                     client_secret='0ZaRckgTXapz2D2z1N66UrNJHQQ',
+                     user_agent='1.0.0')
+
+@client_bot.command()
+async def meme(ctx):
+    memes_submissions = agent.subreddit('dankmemes').hot()
+    post_to_pick = random.randint(1, 30)
+    for i in range(0, post_to_pick):
+        submission = next(x for x in memes_submissions if not x.stickied)
+
+    await ctx.send(submission.url)
+
+
+
+######################################## TESTING PLACE ########################################
+
 
 
 ######################################## TOKEN ########################################
