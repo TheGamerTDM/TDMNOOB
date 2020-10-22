@@ -35,7 +35,7 @@ async def ping(ctx):
 
 
 ####################################### 8BALL ########################################
-@client_bot.command(aliases=['8ball', '8BALL'])
+@client_bot.command(name="8ball")
 async def _8ball(ctx, *, question):
     fuckyou = ['fuck you', 'FUCK YOU']
     python = ['python', 'PYTHON', 'py']
@@ -228,54 +228,41 @@ agent = praw.Reddit(client_id='Ceva16eRbrWxog',
                      user_agent='1.0.0')
 
 @client_bot.command(aliases=['MEME','memes','MEMES'])
-async def meme(ctx, *, memez=None):
+async def meme(ctx, *, memez):
 
     hep = ['help', 'HELP']
+    subreddit = ['dankmemes', 'memes', 'ohffensivememes', 'ksi']
+    banndelist = ['porn','furry','pornhub']
 
-    if memez == 'dankmemes':
-        memes_submissions = agent.subreddit('dankmemes').hot()
-        post_to_pick = random.randint(1, 30)
-        for i in range(0, post_to_pick):
-            submission = next(x for x in memes_submissions if not x.stickied)
-
-        await ctx.send(submission.url)
-    elif memez == 'memes':
-        memes_submissions = agent.subreddit('memes').hot()
-        post_to_pick = random.randint(1, 30)
-        for i in range(0, post_to_pick):
-            submission = next(x for x in memes_submissions if not x.stickied)
-
-        await ctx.send(submission.url)
-    elif memez == 'ohffensivememes':
-        memes_submissions = agent.subreddit('ohffensivememes').hot()
-        post_to_pick = random.randint(1, 30)
-        for i in range(0, post_to_pick):
-            submission = next(x for x in memes_submissions if not x.stickied)
-
-        await ctx.send(submission.url)
-    elif memez == 'ksi':
-        memes_submissions = agent.subreddit('ksi').hot()
-        post_to_pick = random.randint(1, 30)
-        for i in range(0, post_to_pick):
-            submission = next(x for x in memes_submissions if not x.stickied)
-
-        await ctx.send(submission.url)
-    elif memez in hep:
-        await ctx.send('```py\n1. dankmemes\n2. memes\n3. ohffensivememes\n4. ksi\n5. Type what subreddit you want```')
-    else:
-        await ctx.send('Please type a subreddit or do ".meme help" for more help')
-        return
-            
-    
     if memez in hep:
+        await ctx.send('```py\n1. dankmemes\n2. memes\n3. ohffensivememes\n4. ksi\n5. Type what subreddit you want```')
         return
-    else:
-        memes_submissions = agent.subreddit(memez).hot()
-        post_to_pick = random.randint(1, 30)
-        for i in range(0, post_to_pick):
-            submission = next(x for x in memes_submissions if not x.stickied)
+    if memez not in banndelist:
+        if memez not in subreddit:
+            memes_submissions = agent.subreddit(memez).hot()
+            post_to_pick = random.randint(1, 30)
+            for i in range(0, post_to_pick):
+                submission = next(x for x in memes_submissions if not x.stickied)
 
-        await ctx.send(submission.url)
+            await ctx.send(submission.url)
+        elif memez in subreddit:
+            memes_submissions = agent.subreddit(memez)
+            post_to_pick = random.randint(1, 30)
+            for i, j in enumerate(memes_submissions.hot(limit=30)):
+                if i == post_to_pick:
+                    await ctx.send(j.url)
+        else:
+            await ctx.send("Not a valid subreddit")
+    else:
+        await ctx.send('its bannde')
+                
+
+######################################## VICTOOOOOOOR ########################################
+@client_bot.command()
+@commands.has_permissions(manage_channels=True)
+async def viktor(ctx):
+    await ctx.send('https://media.discordapp.net/attachments/547097300527349775/547576100792827915/video.gif')
+
 
 
 
