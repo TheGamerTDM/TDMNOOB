@@ -28,7 +28,7 @@ async def ping(ctx):
 @client_bot.command(aliases=['8ball', '8BALL'])
 async def _8ball(ctx, *, question):
     fuckyou = ['fuck you', 'FUCK YOU']
-    python = ['python','PYTHON','py']
+    python = ['python', 'PYTHON', 'py']
     if question in python:
         responses = [
             'Ask Gustav',
