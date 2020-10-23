@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f60c3490-b9f1-452f-abea-db9584a458e6" name="Default Changelist" comment="added poll&#10;added all random/fun cogs in one">
+    <list default="true" id="f60c3490-b9f1-452f-abea-db9584a458e6" name="Default Changelist" comment="added mute">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cogs/Admin_Stuff.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/Admin_Stuff.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603447338387</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added mute">
+      <created>1603448742788</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1603448742788</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,7 +134,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="..." />
     <MESSAGE value="added poll&#10;added all random/fun cogs in one" />
-    <option name="LAST_COMMIT_MESSAGE" value="added poll&#10;added all random/fun cogs in one" />
+    <MESSAGE value="added mute" />
+    <option name="LAST_COMMIT_MESSAGE" value="added mute" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1296" y="201" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603445624895">
@@ -176,9 +183,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603443850187" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1603447413225">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1603448747674">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603447413225" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603448747674" />
   </component>
 </project>
