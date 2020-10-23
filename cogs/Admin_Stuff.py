@@ -6,7 +6,7 @@ import os
 import requests
 from discord.ext import commands
 import json
-
+from main import client_bot
 
 
 class Admin_Stuff(commands.Cog):
@@ -30,6 +30,17 @@ class Admin_Stuff(commands.Cog):
         else:
             await ctx.send("100 or under please")
 
+    ##################################################### SPAM #####################################################
+    @commands.command()
+    @commands.has_permissions(manage_messages=True)
+    @commands.bot_has_permissions(manage_messages=True)
+    async def spam(self, ctx, times: int, content='repeating...'):
+        if times <= 100:
+            for i in range(times):
+                await ctx.send(content)
+        else:
+            await ctx.send(f'Under 100 please. U {times}')
+
 
     ##################################################### SAY #####################################################
     @commands.command()
@@ -37,6 +48,7 @@ class Admin_Stuff(commands.Cog):
     @commands.bot_has_permissions(manage_messages=True)
     async def say(self, ctx, *, say):
         await ctx.send(say)
+        print(say)
 
     ##################################################### SEND #####################################################
     @commands.command()

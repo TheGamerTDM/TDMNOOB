@@ -19,7 +19,7 @@ class CommandEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         await client_bot.change_presence(
-            activity=discord.Activity(type=discord.ActivityType.watching, name="porn with .help ;)"))
+            activity=discord.Activity(type=discord.ActivityType.playing, name="with my dick"))
         print(f'Logged in as {client_bot.user}')
 
     @commands.Cog.listener()
