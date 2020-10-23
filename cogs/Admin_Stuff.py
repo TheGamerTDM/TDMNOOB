@@ -12,7 +12,23 @@ from main import client_bot
 class Admin_Stuff(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
+
+    ##################################################### MUTE/UNMUTE #####################################################
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    @commands.bot_has_permissions()
+    async def mute(self, ctx, member: discord.Member, *, reason=None):
+        await member.edit(mute=True, reason=reason)
+        await ctx.send(f'Mutede {member.mention}. Reason: {reason}')
+
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    @commands.bot_has_permissions()
+    async def unmute(self, ctx, member: discord.Member):
+        await member.edit(mute=False)
+        await ctx.send(f'Unmutede {member.mention}.')
+
+
     ##################################################### CLEAR #####################################################
     @commands.command(aliases=['dump', 'remove'])
     @commands.has_permissions(manage_messages=True)
