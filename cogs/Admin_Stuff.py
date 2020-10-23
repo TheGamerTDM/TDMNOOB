@@ -1,6 +1,7 @@
 import discord
 from time import sleep
 import praw
+import asyncio
 import random
 import os
 import requests
@@ -13,7 +14,21 @@ class Admin_Stuff(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    ##################################################### MUTE/UNMUTE #####################################################
+    @commands.command()
+    async def mc(ctx, member: discord.Member, duration=0, *, unit=None):
+        roleobject = discord.utils.get(ctx.message.guild.roles, id=769141888459866123)
+        await ctx.send(f":white_check_mark: Muted {member} for {duration}{unit}")
+        await member.add_roles(roleobject)
+        if unit == "s":
+            wait = 1 * duration
+            await asyncio.sleep(wait)
+        elif unit == "m":
+            wait = 60 * duration
+            await asyncio.sleep(wait)
+        await member.remove_roles(roleobject)
+        await ctx.send(f":white_check_mark: {member} was unmuted")
+
+        ##################################################### MUTE/UNMUTE #####################################################
     @commands.command()
     @commands.has_permissions(administrator=True)
     @commands.bot_has_permissions()
