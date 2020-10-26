@@ -24,7 +24,7 @@ class Fun(commands.Cog):
 
     @commands.command()
     async def gif(self, ctx, *, pick):
-
+        """Search on a gif sit on random gifs that you want"""
         hep = ['help', 'HELP']
         # subreddit = ['dankmemes', 'memes', 'ohffensivememes', 'ksi']
 
@@ -35,7 +35,7 @@ class Fun(commands.Cog):
         if pick not in hep:
             # set the apikey and limit
             apikey = "6EFTON5B6X16"  # test value
-            lmt = 30
+            lmt = 50
 
             # our test search
             # _categories = ['excited', 'puppies']
@@ -54,6 +54,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['Reddit', 'rt'])
     async def reddit(self, ctx, *, memez):
+        """Search on reddit"""
 
         hep = ['help', 'HELP']
         subreddit = ['dankmemes', 'memes', 'ohffensivememes', 'ksi']
@@ -81,8 +82,9 @@ class Fun(commands.Cog):
         else:
             await ctx.send('U BANDE MF')
 
-    @commands.command(name="8ball")
+    @commands.command(name="8ball", aliases=['8BALL'])
     async def _8ball(self, ctx, *, question):
+        """ITS 8BALL WTF DO YOU WANT TO KNOW?"""
         fuckyou = ['fuck you', 'FUCK YOU']
         python = ['python', 'PYTHON', 'py']
         if question in python:
@@ -90,7 +92,7 @@ class Fun(commands.Cog):
                 'Ask Gustav',
                 'PYTHON IS THE BEST',
                 'C# is trash',
-                'C# users should programe in python',
+                'C# users should programme in python',
                 'python is good',
             ]
         elif question in fuckyou:
@@ -128,7 +130,7 @@ class Fun(commands.Cog):
 
     @commands.command(aliases=['flip', 'coin'])
     async def coinflip(self, ctx):
-        """ Coinflip! """
+        """ Flip a coin! """
         coinsides = ['Heads', 'Tails']
         await ctx.send(f"**{ctx.author.name}** flipped a coin and got **{random.choice(coinsides)}**!")
 
@@ -144,6 +146,7 @@ class Fun(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     @commands.bot_has_permissions(manage_messages=True)
     async def viktor(self, ctx):
+        """Its a meme between dev and the other guy :D"""
         await ctx.send('https://media.discordapp.net/attachments/547097300527349775/547576100792827915/video.gif')
 
     @commands.command()
@@ -171,13 +174,10 @@ class Fun(commands.Cog):
             await msg.edit(content=f"**{user.name}** and **{ctx.author.name}** are enjoying a lovely beer together 🍻")
         except asyncio.TimeoutError:
             await msg.delete()
-            await ctx.send(f"well, doesn't seem like **{user.name}** wanted a beer with you **{ctx.author.name}** ;-;")
+            await ctx.send(f"well, doesn't seem like **{user.name}** wanted a beer with you **{ctx.author.name}** :(")
         except discord.Forbidden:
             # Yeah so, bot doesn't have reaction permission, drop the "offer" word
             beer_offer = f"**{user.name}**, you got a 🍺 from **{ctx.author.name}**"
             beer_offer = beer_offer + f"\n\n**Reason:** {reason}" if reason else beer_offer
             await msg.edit(content=beer_offer)
-
-
-
 

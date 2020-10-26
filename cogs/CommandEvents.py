@@ -24,7 +24,7 @@ class CommandEvents(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-        print(ctx.command.name + " was invoked incorrectly.")
+        print(ctx.command.name + " was incorrectly invoked.")
         print(error)
 
     @commands.Cog.listener()
@@ -38,7 +38,7 @@ class CommandEvents(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_completion(self, ctx):
-        print(ctx.command.name + " was invoked successfully.")
+        print(ctx.command.name + " was successfully invoked.")
 
 def setup(bot):
     bot.add_cog(CommandEvents(bot))
