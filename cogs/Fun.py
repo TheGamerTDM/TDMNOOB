@@ -141,6 +141,7 @@ class Fun(commands.Cog):
         reason = f"for **{text}** " if text else ""
         await ctx.send(f"**{ctx.author.name}** has paid their respect {reason}{random.choice(hearts)}")
 
+
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     @commands.bot_has_permissions(manage_messages=True)

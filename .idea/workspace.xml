@@ -20,19 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f60c3490-b9f1-452f-abea-db9584a458e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cogs/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/cache.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/checks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/context.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/formats.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/fuzzy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/maps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/paginator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cogs/utils/time.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cogs/Admin_Stuff.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/Admin_Stuff.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cogs/Fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/Fun.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
