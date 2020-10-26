@@ -144,7 +144,7 @@ class Fun(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     @commands.bot_has_permissions(manage_messages=True)
-    async def viktor(ctx):
+    async def viktor(self, ctx):
         await ctx.send('https://media.discordapp.net/attachments/547097300527349775/547576100792827915/video.gif')
 
     @commands.command()
