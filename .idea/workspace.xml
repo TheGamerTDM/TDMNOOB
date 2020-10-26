@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f60c3490-b9f1-452f-abea-db9584a458e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cogs/Fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/Fun.py" afterDir="false" />
-    </list>
+    <list default="true" id="f60c3490-b9f1-452f-abea-db9584a458e6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
