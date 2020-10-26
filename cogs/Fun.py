@@ -51,8 +51,6 @@ class Fun(commands.Cog):
             gif = data["results"][random.randint(0, total_gifs)]['url']
 
             await ctx.send(gif)
-        else:
-            top_8gifs = None
 
     @commands.command(aliases=['Reddit', 'rt'])
     async def reddit(self, ctx, *, memez):
