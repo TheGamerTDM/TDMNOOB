@@ -7,7 +7,7 @@ import os
 import requests
 from discord.ext import commands
 import json
-from main import client_bot
+from main import bot
 
 
 class Admin_Stuff(commands.Cog):
@@ -55,10 +55,10 @@ class Admin_Stuff(commands.Cog):
     async def send(self, ctx, channel, *, content):
         """Send a message to a channel"""
         if "#" in channel:
-            channel = client_bot.get_channel(int(channel[2:-1]))
+            channel = bot.get_channel(int(channel[2:-1]))
             await channel.send(content)
         else:
-            channel = client_bot.get_channel(int(channel))
+            channel = bot.get_channel(int(channel))
             await channel.send(content)
 
 

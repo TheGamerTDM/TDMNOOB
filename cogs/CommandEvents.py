@@ -6,7 +6,7 @@ import os
 import requests
 from discord.ext import commands
 import json
-from main import client_bot
+from main import bot
 
 commands_tally = {
 
@@ -18,9 +18,9 @@ class CommandEvents(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        await client_bot.change_presence(
+        await bot.change_presence(
             activity=discord.Activity(type=discord.ActivityType.playing, name="with my dick"))
-        print(f'Logged in as {client_bot.user}')
+        print(f'Logged in as {bot.user}')
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
