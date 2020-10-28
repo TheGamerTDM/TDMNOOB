@@ -22,7 +22,7 @@ class Fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(aliases=['GIF'])
     async def gif(self, ctx, *, pick):
         """Search on a gif sit on random gifs that you want"""
         hep = ['help', 'HELP']
@@ -134,7 +134,7 @@ class Fun(commands.Cog):
         coinsides = ['Heads', 'Tails']
         await ctx.send(f"**{ctx.author.name}** flipped a coin and got **{random.choice(coinsides)}**!")
 
-    @commands.command()
+    @commands.command(aliases=['F'])
     async def f(self, ctx, *, text: commands.clean_content = None):
         """ Press F to pay respect """
         hearts = ['❤', '💛', '💚', '💙', '💜']
@@ -149,7 +149,7 @@ class Fun(commands.Cog):
         """Its a meme between dev and the other guy :D"""
         await ctx.send('https://media.discordapp.net/attachments/547097300527349775/547576100792827915/video.gif')
 
-    @commands.command()
+    @commands.command(aliases=['BEER'])
     async def beer(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
         """ Give someone a beer! 🍻 """
         if not user or user.id == ctx.author.id:
