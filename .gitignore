@@ -3,6 +3,5 @@ config.json
 .vscode
 .gitattributes
 .gitignore
-.env
 logs
 Lavalink.jar

@@ -1,40 +1,12 @@
 import discord
-from time import sleep
-import praw
-import asyncio
-import random
-import os
-import requests
 from discord.ext import commands
-import json
-from main import bot
+from commons import checks
+from asyncio import sleep
 
-
-class Admin_Stuff(commands.Cog):
-    def __init__(self, bot):
+class Admin(commands.Cog):
+    """Commands for managing Discord servers."""
+    def __init__(self,bot):
         self.bot = bot
-
-
-    ##################################################### CLEAR #####################################################
-    @commands.command(name='remove', aliases=['dump', 'rm'])
-    @commands.has_permissions(manage_messages=True)
-    @commands.bot_has_permissions(manage_messages=True)
-    async def clear(self, ctx, amount=2):
-        """Remove random messages up to 100"""
-        if amount == 0:
-            await ctx.send('no cant do buccru')
-            sleep(2)
-            await ctx.channel.purge(limit=amount+1)
-        elif amount <= 100:
-            if amount == 2:
-                await ctx.send(f'Yes sir i well remove {amount} as default')
-            else:
-                await ctx.send(f'Yes sir i well remove {amount}')
-            
-            sleep(2)
-            await ctx.channel.purge(limit=amount + 2)
-        else:
-            await ctx.send("100 or under please")
 
     ##################################################### SPAM #####################################################
     @commands.command()
@@ -62,42 +34,91 @@ class Admin_Stuff(commands.Cog):
             await channel.send(content)
 
 
-    ##################################################### BAN #####################################################
+    @checks.can_kick()
     @commands.command()
-    @commands.has_permissions(ban_members=True)
-    @commands.bot_has_permissions(ban_members=True)
-    async def ban(self, ctx, member: discord.Member, *, reason=None):
-        """Ban a NIGGIER"""
-        await member.ban(reason=reason)
-        await ctx.send(f'Banned {member.mention}. Reason: {reason}')
+    async def kick(self, ctx, user : discord.Member):
+        """Kicks a user from the server."""
+        if ctx.author == user:
+            await ctx.send("You cannot kick yourself.")
+        else:
+            await user.kick()
+            embed = discord.Embed(title=f'User {user.name} has been kicked.', color=0x00ff00)
+            embed.add_field(name="Goodbye!", value=":boot:")
+            embed.set_thumbnail(url=user.avatar_url)
+            await ctx.send(embed=embed)
 
-
-    ##################################################### KICK #####################################################
+    @checks.can_ban()
     @commands.command()
-    @commands.has_permissions(kick_members=True)
-    @commands.bot_has_permissions(kick_members=True)
-    async def kick(self, ctx, member: discord.Member, *, reason=None):
-        """KICK THAT FUCKKER"""
-        await member.kick(reason=reason)
-        await ctx.send(f'Kicket {member.mention}. Reason: {reason}')
-    
+    async def ban(self, ctx, user : discord.Member):
+        """Bans a user from the server."""
+        if ctx.author == user:
+            await ctx.send("You cannot ban yourself.")
+        else:
+            await user.ban()
+            embed = discord.Embed(title=f'User {user.name} has been banned.', color=0x00ff00)
+            embed.add_field(name="Goodbye!", value=":hammer:")
+            embed.set_thumbnail(url=user.avatar_url)
+            await ctx.send(embed=embed)
 
-    ##################################################### UNBANN #####################################################
+    @checks.can_mute()
     @commands.command()
-    @commands.has_permissions(administrator=True)
-    @commands.bot_has_permissions(administrator=True)
-    async def unban(self, ctx, *, member):
-        """Unban that dud"""
-        banned_users = await ctx.guild.bans()
-        member_name, member_discriminator = member.split('#')
+    async def mute(self, ctx, user : discord.Member, time: int):
+        """Prevents a user from speaking for a specified amount of time."""
+        if ctx.author == user:
+            await ctx.send("You cannot mute yourself.")
+        else:
+            rolem = discord.utils.get(ctx.message.guild.roles, name='Muted')
+            if rolem is None:
+                embed=discord.Embed(title="Muted role", url="http://echo-bot.wikia.com/wiki/Setting_up_the_muted_role", description="The mute command requires a role named 'Muted'.", color=0xff0000)
+                embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
+                embed.set_footer(text="Without this role, the command will not work.")
+                await ctx.send(embed=embed)
+            elif rolem not in user.roles:
+                embed = discord.Embed(title=f'User {user.name} has been successfully muted for {time}s.', color=0x00ff00)
+                embed.add_field(name="Shhh!", value=":zipper_mouth:")
+                embed.set_thumbnail(url=user.avatar_url)
+                await ctx.send(embed=embed)
+                await user.add_roles(rolem)
+                await sleep(time)
+                if rolem in user.roles:
+                    try:
+                        await user.remove_roles(rolem)
+                        embed = discord.Embed(title=f'User {user.name} has been automatically unmuted.', color=0x00ff00)
+                        embed.add_field(name="Welcome back!", value=":open_mouth:")
+                        embed.set_thumbnail(url=user.avatar_url)
+                        await ctx.send(embed=embed)
+                    except Exception:
+                        print(f'User {user.name} could not be unmuted!')
+            else:
+                await ctx.send(f'User {user.mention} is already muted.')
 
-        for ban_entry in banned_users:
-            user = ban_entry.user
+    @checks.can_mute()
+    @commands.command()
+    async def unmute(self, ctx, user: discord.Member):
+        """Unmutes a user."""
+        rolem = discord.utils.get(ctx.message.guild.roles, name='Muted')
+        if rolem in user.roles:
+            embed = discord.Embed(title=f'User {user.name} has been manually unmuted.', color=0x00ff00)
+            embed.add_field(name="Welcome back!", value=":open_mouth:")
+            embed.set_thumbnail(url=user.avatar_url)
+            await ctx.send(embed=embed)
+            await user.remove_roles(rolem)
 
-            if (user.name, user.discriminator) == (member_name, member_discriminator):
-                await ctx.guild.unban(user)
-                await ctx.send(f'Unbanned {user.mention}')
-                return
+    @checks.can_managemsg()
+    @commands.command(name='remove', aliases=['dump', 'rm', 'clear'])
+    async def prune(self, ctx, count: int):
+        """Deletes a specified amount of messages. (Max 100)"""
+        if count>100:
+            count = 100
+        await ctx.message.channel.purge(limit=count, bulk=True)
+
+    @checks.can_managemsg()
+    @commands.command()
+    async def clean(self, ctx):
+        """Cleans the chat of the bot's messages."""
+        def is_me(m):
+            return m.author == self.bot.user
+        await ctx.message.channel.purge(limit=100, check=is_me)
 
 def setup(bot):
-    bot.add_cog(Admin_Stuff(bot))
+    bot.add_cog(Admin(bot))
