@@ -11,38 +11,13 @@ class mongoIO():
 			{
 				"blacklisted": blacklist,
 				"id": member.id,
-				"name": member.name,
-				"osu": osuID,
-				"preferredServer": osuServer
+				"name": member.name
 			}
 		)
 
 	async def userExists(self, member:discord.Member):
 		exists = await self.db.users.find_one( {"id": {"$eq": member.id} } )
 		return exists is not None
-
-	async def getOsu(self, member: discord.Member):
-		a = await self.db.users.find_one( {"id": {"$eq": member.id} } )
-		if a is None:
-			return None
-		if "preferredServer" not in a:
-			a["preferredServer"] = 0
-		return a["osu"], a["preferredServer"]
-
-	async def setOsu(self, member: discord.Member, osuID: int, osuServer: int = 0):
-		if not await self.userExists(member):
-			await self.addUser(member, False, osuID)
-		else:
-			await self.db.users.update_one(
-				{"id": member.id},
-				{
-					"$set": {
-						"osu": osuID,
-						"preferredServer": osuServer
-					},
-					"$currentDate": {"lastModified": True}
-				}
-			)
 
 	async def blacklistUser(self, member: discord.Member):
 		if not await self.userExists(member):

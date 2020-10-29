@@ -1,0 +1,23 @@
+{
+    "redis": true,
+    "__comment": "select -> index of config to use (starting from 0)",
+    "select": 0,
+    "configs": [
+        {
+            "mongo": {
+                "URI": "mongodb+srv://abdikaim:123asdqwezxc@cluster0.7rprq.mongodb.net/<dbname>?retryWrites=true&w=majority",
+                "database": "cluster0",
+                "timeout": 10000
+            },
+            "lavalink": {
+                "password": "Waxing",
+                "port": 7000
+            },
+            "command_prefixes": ["."],
+            "color": "0xd74613",
+            "token": "Njg1ODEyMDkxNzUxMzY2NjU3.XmOGSA.aNxUTC2e6VZttRCaI93_kyOUVZY",
+            "owners": [561936690063605760],
+            "splashArt": "TheGamerTDM"
+        }
+    ]
+}

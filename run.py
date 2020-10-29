@@ -5,9 +5,15 @@ import random
 import os
 import requests
 from discord.ext import commands
+import json
 
 ######################################## BOT PREFIX ########################################
-bot = commands.Bot(command_prefix=os.getenv('PREFIX'))
+with open ("config.json", 'r') as f:
+    config = json.load(f)
+    token = config['configs'][0]['token']
+    prefix = config['configs'][0]['command_prefixes']
+
+bot = commands.Bot(prefix)
 
 
 @bot.event
@@ -29,4 +35,4 @@ for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):
     bot.load_extension(f'cogs.{filename[:-3]}')
 
-bot.run(os.getenv('BOT_TOKEN'))
+bot.run(token)

@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from commons import checks
+from commons import checks, mongoIO
 from datetime import datetime
 import time
 disableKeywords = ['none','disable','off','disabled']
@@ -30,7 +30,7 @@ class Settings(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.is_owner()
-    @commands.command(hidden=True)
+    @commands.command()
     async def rebuild(self, ctx, *, args = "normal"):
         """Rebuilds the database. (Owner-only)"""
         start_time = time.time()
@@ -49,7 +49,7 @@ class Settings(commands.Cog):
         await ctx.send(f'Done rebuilding. {time.time() - start_time}s')
 
     @commands.is_owner()
-    @commands.command(hidden=True)
+    @commands.command()
     async def blacklist(self, ctx, user: discord.Member):
         """Blacklists a user from the bot. (Owner-only)"""
         if not await self.bot.mongoIO.userExists(user):
@@ -60,7 +60,7 @@ class Settings(commands.Cog):
             await ctx.send("User blacklisted.")
 
     @commands.is_owner()
-    @commands.command(hidden=True)
+    @commands.command()
     async def unblacklist(self, ctx, user: discord.Member):
         """Unblacklists a user from the bot. (Owner-only)"""
         await self.bot.mongoIO.unblacklistUser(user)

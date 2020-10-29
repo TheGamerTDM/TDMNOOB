@@ -27,10 +27,10 @@ class Admin(commands.Cog):
     async def send(self, ctx, channel, *, content):
         """Send a message to a channel"""
         if "#" in channel:
-            channel = bot.get_channel(int(channel[2:-1]))
+            channel = self.bot.get_channel(int(channel[2:-1]))
             await channel.send(content)
         else:
-            channel = bot.get_channel(int(channel))
+            channel = self.bot.get_channel(int(channel))
             await channel.send(content)
 
 
@@ -110,7 +110,7 @@ class Admin(commands.Cog):
         """Deletes a specified amount of messages. (Max 100)"""
         if count>100:
             count = 100
-        await ctx.message.channel.purge(limit=count, bulk=True)
+        await ctx.message.channel.purge(limit=count+1, bulk=True)
 
     @checks.can_managemsg()
     @commands.command()
