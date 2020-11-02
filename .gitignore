@@ -2,7 +2,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,java,vscode
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,java,vscode
 
-.idea/
+.idea/*
+logs/*
 ### Java ###
 # Compiled class file
 *.class
@@ -17,7 +18,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
