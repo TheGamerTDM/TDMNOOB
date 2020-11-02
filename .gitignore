@@ -2,6 +2,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,java,vscode
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,java,vscode
 
+.idea/
 ### Java ###
 # Compiled class file
 *.class
